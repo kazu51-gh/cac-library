@@ -24,18 +24,18 @@ export default function Home() {
       </header>
       <main>
         <h2 className='m-3 text-3xl font-bold'>書籍一覧</h2>
-        <div className="grid grid-cols-3 m-3">
+        <div className="auto-rows-fr gap-2.5 grid grid-cols-4 m-3">
           {books.map((book, index) => (
-            <div key={index} className='flex flex-col w-4/5 mx-auto'>
-              <h3 className='py-1.5 my-auto text-2xl'>{book.name}</h3>
+            <div key={index} className='bg-white flex flex-col rounded-xl shadow-md'>
+              <h3 className='grow h-min m-3 text-xl'>{book.name}</h3>
               <Image
-                className='w-4/5'
+                className='mx-auto w-4/5'
                 src={`${BASE_PATH}${book.image}`}
                 alt='noImage'
                 width={600}
                 height={800}
               />
-              <div className='flex flex-col mt-2 mb-4'>
+              <div className='flex flex-col m-3'>
                 <p>ISBN : {book.isbn}</p>
                 <p>出版 : {book.publication}</p>
                 <p>著者 : {book.author}</p>
