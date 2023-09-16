@@ -1,3 +1,6 @@
+import { basePath } from "../../next.config";
+
+const BASE_PATH = basePath ? basePath : "";
 
 export default function Header() {
   return (
@@ -7,7 +10,7 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a>
             <span className="sr-only">C.A.C. Library</span>
-            <img className="h-6 w-auto" src="/images/logo.png" />
+            <img className="h-6 w-auto" src={`${BASE_PATH}images/logo.png`} />
           </a>
         </div>
 
