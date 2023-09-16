@@ -1,3 +1,4 @@
+import path from "path";
 import { basePath } from "../../next.config";
 
 const BASE_PATH = basePath ? basePath : "";
@@ -10,14 +11,14 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a>
             <span className="sr-only">C.A.C. Library</span>
-            <img className="h-6 w-auto" src={`${BASE_PATH}images/logo.png`} />
+            <img className="h-6 w-auto" src={path.join(BASE_PATH, "images/logo.png")} />
           </a>
         </div>
 
         <div  className="hidden lg:flex lg:gap-x-12" >
-          <a href="/" className="text-sm font-semibold leading-6 ">書籍</a>
-          <a href="/tags" className="text-sm font-semibold leading-6 ">タグ</a>
-          <a href="/search" className="text-sm font-semibold leading-6 ">さがす</a>
+          <a href={path.join(BASE_PATH, "/")} className="text-sm font-semibold leading-6 ">書籍</a>
+          <a href={path.join(BASE_PATH, "tags")} className="text-sm font-semibold leading-6 ">タグ</a>
+          <a href={path.join(BASE_PATH, "search")} className="text-sm font-semibold leading-6 ">さがす</a>
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">

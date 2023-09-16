@@ -5,6 +5,7 @@ import { basePath } from '../../../next.config'
 import Link from 'next/link';
 import { useState } from 'react';
 import { Book } from "@/types/book";
+import BookCard from "@/components/book_card";
 
 type BookList = Array<Book>;
 
@@ -31,34 +32,20 @@ export default function Home() {
 
   return (
     <div>
-      <header>
-        <div className='flex justify-between'>
-          <h1 className='text-4xl font-bold m-3'>C.A.C.図書管理システム</h1>
-          <div>
-            <Link
-              href='/'
-              className='bg-white border border-black rounded px-3 py-1.5 block text-center m-3'
-            >
-              HOME
-            </Link>
-          </div>
-        </div>
-        <hr className='border-black' />
-      </header>
       <main>
-        <h2 className='m-3 text-3xl font-bold'>検索</h2>
-        <div className='flex'>
-          <input
-            type='text'
-            className='m-3 p-1'
-            onChange={handleChange}
-          />
-          <input
-            className='bg-white border border-black rounded px-3 py-1.5 block text-center m-3 cursor-pointer'
-            type='submit'
-            value={'送信'}
-            onClick={handleClick}
-          />
+        <h2 className='m-3 text-3xl font-bold'>さがす</h2>
+        <div className="m-3">
+
+          <div className="relative">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>
+              </div>
+              <input onChange={handleChange} type="search" className="block w-full p-4 pl-10 text-sm border rounded-lg outline-none bg-primary" placeholder="Unity ゲーム開発" />
+              <button onClick={handleClick} type="submit" className="transition duration-150 ease-linear text-white absolute right-2.5 bottom-2.5 bg-accent hover:bg-accent-bright outline-none font-medium rounded-lg text-sm px-4 py-2">検索</button>
+          </div>
+
         </div>
         {matchbooks.length === 0 &&
           <div className='m-3'>
@@ -73,20 +60,8 @@ export default function Home() {
         <div className="auto-rows-fr gap-2.5 grid grid-cols-4 m-3">
           {!firstShowPage &&
             matchbooks.map((book, index) => (
-              <div key={index} className='bg-white flex flex-col rounded-xl shadow-md'>
-                <h3 className='grow h-min m-3 text-xl'>{book.name}</h3>
-                <Image
-                  className='mx-auto w-4/5'
-                  src={`${BASE_PATH}${book.image}`}
-                  alt='noImage'
-                  width={600}
-                  height={800}
-                />
-                <div className='flex flex-col m-3'>
-                  <p>ISBN : {book.isbn}</p>
-                  <p>出版 : {book.publication}</p>
-                  <p>著者 : {book.author}</p>
-                </div>
+              <div key={index} className='flex flex-col'>
+                <BookCard book={book}></BookCard>
               </div>
             ))
           }
