@@ -1,6 +1,8 @@
+import Header from "@/components/header";
 import './globals.css'
 import type { Metadata } from 'next'
 import { Noto_Sans_JP } from 'next/font/google'
+import Footer from "@/components/footer";
 
 const font = Noto_Sans_JP({
   subsets: ['latin']
@@ -18,7 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`${font.className}`}>{children}</body>
+      <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+      </head>
+      <body className={`${font.className}`}>
+        <Header></Header>
+        <div className='container mx-auto'>{children}</div>
+        <Footer></Footer>
+      </body>
     </html>
   )
 }

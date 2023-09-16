@@ -3,19 +3,57 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 214, 219, 220;
+  --primary-color: #000;
+  --secondary-color: #333;
+  --primary-accent: #9af;
+  --secondary-accent: #ee3;
+  --primary-background: #fff;
+  --secondary-background: #f6f6f6;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --primary-color: #fff;
+    --secondary-color: #eee;
+    --primary-accent: #6af;
+    --secondary-accent: #ee3;    
+    --primary-background: #333;
+    --secondary-background: #3a3a3a;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+  transition-property: color, background;
+  transition-timing-function: linear;
+  transition-duration: .3s;
+  color: var(--primary-color);
+  background: var(--primary-background);
+}
+
+.fill-primary {
+  fill: var(--primary-color);
+}
+
+.fill-secondary {
+  fill: var(--secondary-color);
+}
+
+.bg-primary {
+  background-color: var(--primary-background);
+}
+
+.bg-secondary {
+  background-color: var(--secondary-background);
+}
+
+.bg-accent {
+  background-color: var(--primary-accent);
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
 }

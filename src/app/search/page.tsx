@@ -4,16 +4,9 @@ import { books } from '../../books'
 import { basePath } from '../../../next.config'
 import Link from 'next/link';
 import { useState } from 'react';
+import { Book } from "@/types/book";
 
-type book = {
-  name: string;
-  image: string;
-  isbn: string;
-  publication: string;
-  author: string;
-}
-
-type BookList = Array<book>;
+type BookList = Array<Book>;
 
 const BASE_PATH = basePath ? basePath : '';
 
