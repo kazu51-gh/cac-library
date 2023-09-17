@@ -1,18 +1,12 @@
 'use client'
-import Image from 'next/image'
 import { books } from '../../books'
-import { basePath } from '../../../next.config'
-import Link from 'next/link';
 import { useState } from 'react';
-import { Book } from "@/types/book";
 import BookCard from "@/components/book_card";
-
-type BookList = Array<Book>;
-
-const BASE_PATH = basePath ? basePath : '';
+import searchBooks, { BookList } from "./search";
 
 export default function Home() {
   const [bookTitle, setBookTitle] = useState('');
+  const [fuzzy, setFuzzy] = useState(false);
   const [matchbooks, setMatchBooks] = useState<BookList>(books);
   const [firstShowPage, setFirstShowPage] = useState(true);
 
@@ -21,11 +15,7 @@ export default function Home() {
   }
 
   const handleClick = () => {
-    const title = bookTitle;
-    const filter = title.toUpperCase();
-    const filteredList = books.filter(book => {
-      return book.name.toUpperCase().indexOf(filter) !== -1;
-    });
+    const filteredList = searchBooks(bookTitle, true);
     setMatchBooks(filteredList);
     setFirstShowPage(false);
   }
@@ -36,6 +26,7 @@ export default function Home() {
         <h2 className='m-3 text-3xl font-bold'>さがす</h2>
         <div className="m-3">
 
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -45,6 +36,7 @@ export default function Home() {
               <input onChange={handleChange} type="search" className="block w-full p-4 pl-10 text-sm border rounded-lg outline-none bg-primary" placeholder="Unity ゲーム開発" />
               <button onClick={handleClick} type="submit" className="transition duration-150 ease-linear text-white absolute right-2.5 bottom-2.5 bg-accent hover:bg-accent-bright outline-none font-medium rounded-lg text-sm px-4 py-2">検索</button>
           </div>
+        </form>
 
         </div>
         {matchbooks.length === 0 &&
