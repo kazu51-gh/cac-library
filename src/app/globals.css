@@ -6,6 +6,7 @@
   --primary-color: #000;
   --secondary-color: #333;
   --primary-accent: #9af;
+  --primary-accent-bright: #bcf;
   --secondary-accent: #ee3;
   --primary-background: #fff;
   --secondary-background: #f6f6f6;
@@ -16,6 +17,7 @@
     --primary-color: #fff;
     --secondary-color: #eee;
     --primary-accent: #6af;
+    --primary-accent-bright: #7cf;
     --secondary-accent: #ee3;    
     --primary-background: #333;
     --secondary-background: #3a3a3a;
@@ -48,6 +50,10 @@ body {
 
 .bg-accent {
   background-color: var(--primary-accent);
+}
+
+.hover\:bg-accent-bright:hover {
+  background-color: var(--primary-accent-bright);
 }
 
 .material-symbols-outlined {

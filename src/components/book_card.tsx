@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { basePath } from '../../next.config'
 import { Book } from "@/types/book";
 import Tooltip from "@/components/tooltip";
+import path from "path";
 
 const BASE_PATH = basePath ? basePath : '';
 
@@ -13,7 +14,7 @@ export default function BookCard({book}: {book: Book}) {
       </Tooltip>
       <Image
         className='mx-auto rounded-lg'
-        src={`${BASE_PATH}${book.image}`}
+        src={path.join(BASE_PATH, book.image)}
         alt='noImage'
         width={300}
         height={400}
