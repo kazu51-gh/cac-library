@@ -12,9 +12,9 @@ export default function searchBooks(input: string, fuzzy: boolean = false) : Boo
     const bookToSimilarity = new Map<Book, number>();
     for (const keyword of keywords) {
       books.forEach(book => {
-        const simirality = maxSimilarityOfNGram(keyword, book.name.toUpperCase());
-        if (simirality > 0.8) {
-          bookToSimilarity.set(book, simirality);
+        const similarity = maxSimilarityOfNGram(keyword, book.name.toUpperCase());
+        if (similarity > 0.8) {
+          bookToSimilarity.set(book, similarity);
         }
       });
     }
@@ -80,7 +80,7 @@ function maxSimilarityOfNGram(str1: string, str2: string): number {
   let result = Number.MIN_VALUE;
   for (let i = 0; i < longStr.length + shortStr.length; i++) {
     const subString = longStr.substring(i, i + shortStr.length);
-    const cosine = consineSimilarity(shortStr, subString);
+    const cosine = cosineSimilarity(shortStr, subString);
     if (cosine > result) {
       result = cosine;
     }
@@ -108,7 +108,7 @@ function length(vec: Vector): number {
   return Math.sqrt(ss);
 }
 
-function consineSimilarity(str1: string, str2: string): number {
+function cosineSimilarity(str1: string, str2: string): number {
   const chars = new Set<string>((str1 + str2).split("").filter(c => !isBlank(c)));
   const vec1 = Array.from(chars).map(c => str1.includes(c) ? 1 : 0);
   const vec2 = Array.from(chars).map(c => str2.includes(c) ? 1 : 0);
