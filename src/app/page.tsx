@@ -1,9 +1,22 @@
 "use client"
 
-import { books } from '../books'
+import { useEffect, useState } from 'react';
 import BookCard from "@/components/book_card";
+import { basePath } from "../../next.config";
+
+const BASE_PATH = basePath ? basePath : "";
 
 export default function Home() {
+  const [books, setBooks] = useState([]);
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const res = await fetch(`${BASE_PATH}/api/books`);
+      const data = await res.json();
+      setBooks(data);
+    }
+    fetchBooks();
+  }, []);
+
   return (
     <div>
       <main>
