@@ -1,8 +1,8 @@
 'use client'
 import { books } from '../../books'
 import { useState } from 'react';
-import BookCard from "@/components/book_card";
 import searchBooks, { BookList } from "./search";
+import BookListView from "@/components/book_list_view";
 
 export default function Home() {
   const [bookTitle, setBookTitle] = useState('');
@@ -22,9 +22,7 @@ export default function Home() {
   return (
     <div>
       <main>
-        <h2 className='m-3 text-3xl font-bold'>さがす</h2>
-        <div className="m-3">
-
+        <h2 className='mb-3 text-3xl font-bold'>さがす</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div className="relative">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -36,25 +34,19 @@ export default function Home() {
               <button onClick={handleClick} type="submit" className="transition duration-150 ease-linear text-white absolute right-2.5 bottom-2.5 bg-accent hover:bg-accent-bright outline-none font-medium rounded-lg text-sm px-4 py-2">検索</button>
           </div>
         </form>
-
-        </div>
         {matchbooks.length === 0 &&
-          <div className='m-3'>
+          <div className='my-3'>
             書籍が見つかりませんでした。
           </div>
         }
         {!firstShowPage && matchbooks.length !== 0 &&
-          <div className='m-3'>
+          <div className='my-3'>
             {matchbooks.length}点の書籍が見つかりました。
           </div>
         }
-        <div className="auto-rows-fr gap-2.5 grid grid-cols-4 m-3">
+        <div>
           {!firstShowPage &&
-            matchbooks.map((book, index) => (
-              <div key={index} className='flex flex-col'>
-                <BookCard book={book}></BookCard>
-              </div>
-            ))
+            <BookListView books={matchbooks}></BookListView>
           }
         </div>
       </main>
