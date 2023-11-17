@@ -18,7 +18,11 @@ export default function BookListView({books}: {books: Book[]}) {
           {gridViewIcon}
         </div>
         {viewType === "grid" ? 
-          <div className="grid grid-cols-6 gap-x-4 gap-y-4 items-stretch">
+          <div className="grid gap-x-4 gap-y-4 items-stretch
+            xl:grid-cols-6
+            lg:grid-cols-4
+            grid-cols-3
+            ">
             {books.map((book, index) => (
               <div onClick={() => setSelectedBookIndex(index)} key={index} className="flex items-stretch cursor-pointer">
                 <BookCard book={book}></BookCard>

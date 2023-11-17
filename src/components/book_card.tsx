@@ -18,7 +18,7 @@ export default function BookCard({book}: {book: Book}) {
       />
       <div className='flex flex-col p-2'>
         <Tooltip text={book.name}>
-          <h3 className='font-semibold text-ellipsis two-lines mb-2'>{book.name}</h3>
+          <h3 className='font-semibold break-all text-ellipsis two-lines mb-2'>{book.name}</h3>
         </Tooltip>
       </div>
     </div>
