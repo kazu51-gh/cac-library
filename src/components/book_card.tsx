@@ -1,28 +1,25 @@
 import Image from 'next/image'
 import { basePath } from '../../next.config'
 import { Book } from "@/types/book";
-import Tooltip from "@/components/tooltip";
 import path from "path";
+import Tooltip from "./tooltip";
 
 const BASE_PATH = basePath ? basePath : '';
 
 export default function BookCard({book}: {book: Book}) {
   return (
-    <div className='rounded-xl border py-3 px-6'>
-      <Tooltip text={book.name}>
-        <h3 className='text-xl font-semibold whitespace-nowrap truncate mb-2'>{book.name}</h3>
-      </Tooltip>
+    <div className='rounded-lg border border-neutral-300 flex flex-col'>
       <Image
-        className='mx-auto rounded-lg'
+        className='rounded-t-lg w-full'
         src={path.join(BASE_PATH, book.image)}
         alt='noImage'
-        width={300}
-        height={400}
+        width={250}
+        height={250}
       />
-      <div className='flex flex-col mt-2'>
-        <p>ISBN : {book.isbn}</p>
-        <p>出版 : {book.publication}</p>
-        <p>著者 : {book.author}</p>
+      <div className='flex flex-col p-2'>
+        <Tooltip text={book.name}>
+          <h3 className='font-semibold break-all text-ellipsis two-lines mb-2'>{book.name}</h3>
+        </Tooltip>
       </div>
     </div>
   );
